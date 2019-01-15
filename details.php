@@ -1,5 +1,13 @@
-<?php require_once('admin/scripts/read.php'); ?>
-
+<?php require_once('admin/scripts/read.php'); 
+if(isset($_GET['id'])){
+	$tbl = 'tbl_movies';
+	$col = 'movies_id';
+	$value = $_GET['id'];
+	$results = getSingle($tbl,$col,$value);
+}else{
+	echo 'Please ...';
+}
+?>
 <!doctype html>
 <html>
 <head>
@@ -10,8 +18,8 @@
 	<?php include('templates/header.html'); ?>
 	<h1>This is the movie site</h1>
 	<div>
-		<?php $results = getSingle('tbl_movies','movies_id',1);
-		while($row = $results->fetch(PDO::FETCH_ASSOC)):?>
+		 <!-- $results = getSingle('tbl_movies','movies_id',1); -->
+		 <?php while($row = $results->fetch(PDO::FETCH_ASSOC)):?>
 		<h2><?php echo $row['movies_title'];?></h2>
 		<?php endwhile;?>
 	</div>
